@@ -44,6 +44,8 @@ db.default.password="password within these quotes"
 That's it, your application is noe set to go real time. No more configurations required.
 
 Hope you find this helpful.
+
+ps: all the configurations are present in my files, but you have to customize to suit you db names.
  
  
  
