@@ -1,0 +1,17 @@
+@(postForm: Form[Post])(idz:Integer)
+@import helper._
+@main("Post form") {
+<h1>Post Details</h1>
+@helper.form(action = routes.Application.edit(idz)) {
+<fieldset>
+
+    @helper.inputText(postForm("id"), '_label -> "IdNum", 'readonly -> "readonly")
+    @helper.inputText(postForm("name"),'_label -> "Name", 'readonly -> "readonly")
+    @helper.textarea(postForm("post"), '_label -> "Scrap")
+
+</fieldset>
+<input type="submit" class="btn btn-primary" value="Update">
+<a class="btn" href="@routes.Application.delete(idz)">Delete</a>
+<a class="btn" href="@routes.Application.display()">Cancel</a>
+}
+}

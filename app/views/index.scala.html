@@ -1,0 +1,15 @@
+@(postform:Form[Post])
+@import helper._
+@main("Welcome to Simple Project") {
+
+@form(action=routes.Application.save()){
+<fieldset>
+
+    @helper.inputText(postform("name"),'_label -> "Name")
+    @helper.textarea(postform("post"),'_label -> "Scrap")
+</fieldset>
+<input class="btn btn-primary" type="submit" value="post">
+<a class="btn" href="@routes.Application.display()">cancel</a>
+}
+
+}

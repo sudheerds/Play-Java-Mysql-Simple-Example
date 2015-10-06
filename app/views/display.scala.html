@@ -1,0 +1,43 @@
+@(posts:List[Post])
+@main("Display Posts"){
+<h2>All Posts</h2>
+<fieldset>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Post</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @for(post <- posts) {
+    <tr>
+        <td>
+            <a href="@routes.Application.details(post.id)">
+            @post.id
+            </a>
+        </td>
+
+        <td>
+            <a href="@routes.Application.details(post.id)">
+            @post.name
+            </a>
+        </td>
+
+        <td>
+            <a href="@routes.Application.details(post.id)">
+            @post.post
+            </a>
+        </td>
+    </tr>
+
+    }
+    </tbody>
+</table>
+
+</fieldset>
+<a class="btn" href="@routes.Application.index()">New-Post</a>
+}
+
