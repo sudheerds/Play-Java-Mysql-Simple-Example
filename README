@@ -2,3 +2,52 @@ This is your new Play application
 =================================
 
 This file will be packaged with your application, when using `activator dist`.
+
+To be able to use mysql database with your play-java application we need to make the following simple changes to 
+some files:
+
+1. Edit Build.sbt file to include mysql jdbc driver, just replace this with the already existing libraryDependecies:
+
+libraryDependencies ++= Seq(
+  javaJdbc,
+  cache,
+  javaWs,
+  "mysql" % "mysql-connector-java" % "5.1.36"
+)
+
+also add Ebean by replacing root val with the following in the same file:
+
+lazy val root = (project in file("."))
+ .enablePlugins(PlayJava,PlayEbean)
+ 
+ 2. Edit the Plugins.sbt file to enable the ebean plugin
+ just uncomment the following line int the file:
+ 
+ addSbtPlugin("com.typesafe.sbt" % "sbt-play-ebean" % "1.0.0")
+ 
+ 3. Edit the application.conf file to point your model classes to ebean
+ just add the following:
+ 
+ ebean.default = "models.*"
+ 
+ Its always a good practice to have a separate folder for all you model classes. So, having controllers, 
+ models and views in the app folder is a great categorization.
+ 
+ Now, the important db configuration, stay in the same file and find lines starting with db, uncomment and edit
+ appropriately:
+ 
+db.default.driver=com.mysql.jdbc.Driver
+db.default.url="jdbc:mysql://localhost:3306/your-database-name"
+db.default.username=user who created the database or has access to
+db.default.password="password within these quotes"
+
+That's it, your application is noe set to go real time. No more configurations required.
+
+Hope you find this helpful.
+ 
+ 
+ 
+ 
+ 
+
+
